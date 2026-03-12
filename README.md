@@ -140,15 +140,23 @@ processing
 
 | Parameter | Value | Description |
 |---|---|---|
-| `reach_length` | 3984.6 m | Hydraulic reach length |
 | `pixel_res` | 5.0 m | DEM pixel resolution |
-| `H_crit` | 1.8 m | Critical depth for floodplain activation |
-| `STABILITY_DEPTH_LIMIT` | 0.3 m | Minimum depth for floodplain inclusion |
-| `SI` | 1.45 | Sinuosity Index (H.3 only) |
 
 ### ⚠️ Site-Specific Parameters (Must be adjusted per station)
 
-The following parameters are **specific to Station R10.004 (Cabula)** and must be recalibrated for other stations based on observed stage-discharge data:
+**All** of the following parameters are **specific to Station R10.004 (Cabula)** and must be recalibrated for other stations based on field data, DEM analysis, and observed stage-discharge records:
+
+#### Python Scripts (H1, H2, H3)
+
+| Parameter | Cabula Value | Description |
+|---|---|---|
+| `reach_length` | 3984.6 m | Hydraulic reach length — derived from DEM/channel delineation |
+| `valley_S` | 0.004985 | Valley slope — computed from DEM elevation difference over distance |
+| `H_crit` | 1.8 m | Critical depth for floodplain activation — based on observed data |
+| `STABILITY_DEPTH_LIMIT` | 0.3 m | Minimum inundation depth for floodplain inclusion |
+| `SI` | 1.45 | Sinuosity Index — measured from channel centerline vs valley length |
+
+#### R Scripts (J1, J2, J3, J4)
 
 | Parameter | Cabula Value | Where Used | Description |
 |---|---|---|---|
