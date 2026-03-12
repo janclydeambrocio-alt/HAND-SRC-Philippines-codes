@@ -2,7 +2,11 @@
 
 > R and Python codes for HAND-SRC-Philippines reproducibility
 
-This repository contains Python scripts for generating **Stage-Discharge Rating Curves (SRC)** using the **Height Above Nearest Drainage (HAND)** framework, applied to flood inundation modeling in the Philippines. The scripts implement a dual-zone hydraulic model (channel + floodplain) with varying Manning's *n* roughness coefficients derived from land cover classification.
+This repository contains the Python and R scripts developed for the thesis study:
+
+**"Deriving HAND-Based Synthetic Rating Curves to Delineate Flood Extents in Pampanga and Cagayan de Oro River Basins"**
+
+The scripts generate **Stage-Discharge Rating Curves (SRC)** using the **Height Above Nearest Drainage (HAND)** framework, applied to flood inundation modeling in the Philippines. They implement a dual-zone hydraulic model (channel + floodplain) with varying Manning's *n* roughness coefficients derived from land cover classification.
 
 ---
 
@@ -142,6 +146,23 @@ processing
 | `STABILITY_DEPTH_LIMIT` | 0.3 m | Minimum depth for floodplain inclusion |
 | `SI` | 1.45 | Sinuosity Index (H.3 only) |
 
+### ⚠️ Site-Specific Parameters (Must be adjusted per station)
+
+The following parameters are **specific to Station R10.004 (Cabula)** and must be recalibrated for other stations based on observed stage-discharge data:
+
+| Parameter | Cabula Value | Where Used | Description |
+|---|---|---|---|
+| `gage_min` | 2.450 m | J1, J2, J4 | Minimum observed gage height |
+| `gage_max` | 3.870 m | J1, J2, J4 | Maximum observed gage height |
+| `offset_val` | -1.025 m | J1, J2, J4 | Zero-flow stage offset (h0) |
+| `DEPTH_MIN` | 1.5 m | J3 | Minimum depth for sensitivity analysis |
+| `DEPTH_MAX` | 2.8 m | J3 | Maximum depth for sensitivity analysis |
+| `coeff_A` | 17.779 | J1, J2, J3, J4 | ORC power-law coefficient |
+| `power_B` | 3.43 | J1, J2, J3, J4 | ORC power-law exponent |
+| `end_row` | 74594 | J1, J2, J3, J4 | Row limit of sensitivity Excel file |
+
+> These values are derived from the **Observed Rating Curve (ORC)** fitted in **Appendix I** (`I1_Rating_Curve_Generation.R`). Run the rating curve script first to obtain the correct values for your station before running J1–J4.
+
 ---
 
 ## Output Files
@@ -162,11 +183,16 @@ processing
 
 ## Citation
 
-If you use these scripts in your research, please cite accordingly:
+These scripts were developed as part of the following thesis study:
+
+> **Ambrocio, J.C., et al. (2026).** *Deriving HAND-Based Synthetic Rating Curves to Delineate Flood Extents in Pampanga and Cagayan de Oro River Basins.* [Unpublished thesis].
+
+If you use these scripts in your research, please cite the repository as:
 
 ```
-[Author Name]. (2026). HAND-SRC-Philippines-codes: Python scripts for
-Stage-Discharge Rating Curve generation using HAND-based inundation mapping.
+Ambrocio, J.C., et al. (2026). HAND-SRC-Philippines-codes: Python and R scripts
+for deriving HAND-based Synthetic Rating Curves to delineate flood extents
+in Pampanga and Cagayan de Oro River Basins.
 GitHub. https://github.com/janclydeambrocio-alt/HAND-SRC-Philippines-codes
 ```
 
